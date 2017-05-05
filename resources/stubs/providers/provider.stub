@@ -5,6 +5,18 @@ use Illuminate\Support\ServiceProvider;
 class DummyClass extends ServiceProvider
 {
     /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        app()->booted(function () {
+            $this->booted();
+        });
+    }
+
+    /**
      * Register any application services.
      *
      * @return void
@@ -15,14 +27,12 @@ class DummyClass extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Callback when app booted
      *
      * @return void
      */
-    public function boot()
+    private function booted()
     {
-        app()->booted(function () {
 
-        });
     }
 }

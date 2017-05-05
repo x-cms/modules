@@ -76,7 +76,7 @@ class MakeModel extends AbstractGenerator
             $table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
             $this->call('module:make:migration', [
-                'slug'     => $this->argument('alias'),
+                'alias'     => $this->argument('alias'),
                 'name'     => "create_{$table}_table",
                 '--create' => $table,
             ]);

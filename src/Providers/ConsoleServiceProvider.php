@@ -1,6 +1,5 @@
 <?php namespace Xcms\Modules\Providers;
 
-use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\ServiceProvider;
 use Xcms\Modules\Services\ModuleMigrator;
 
@@ -38,19 +37,19 @@ class ConsoleServiceProvider extends ServiceProvider
     private function generatorCommands()
     {
         $generators = [
-            'module_manager.console.generator.make-module' => \Mrabbani\ModuleManager\Console\Generators\MakeModule::class,
-            'module_manager.console.generator.make-provider' => \Mrabbani\ModuleManager\Console\Generators\MakeProvider::class,
-            'module_manager.console.generator.make-controller' => \Mrabbani\ModuleManager\Console\Generators\MakeController::class,
-            'module_manager.console.generator.make-middleware' => \Mrabbani\ModuleManager\Console\Generators\MakeMiddleware::class,
-            'module_manager.console.generator.make-request' => \Mrabbani\ModuleManager\Console\Generators\MakeRequest::class,
-            'module_manager.console.generator.make-model' => \Mrabbani\ModuleManager\Console\Generators\MakeModel::class,
-//            'module_manager.console.generator.make-repository' => \Mrabbani\ModuleManager\Console\Generators\MakeRepository::class,
-            'module_manager.console.generator.make-facade' => \Mrabbani\ModuleManager\Console\Generators\MakeFacade::class,
-            'module_manager.console.generator.make-service' => \Mrabbani\ModuleManager\Console\Generators\MakeService::class,
-            'module_manager.console.generator.make-support' => \Mrabbani\ModuleManager\Console\Generators\MakeSupport::class,
-//            'module_manager.console.generator.make-view' => \Mrabbani\ModuleManager\Console\Generators\MakeView::class,
-            'module_manager.console.generator.make-migration' => \Mrabbani\ModuleManager\Console\Generators\MakeMigration::class,
-            'module_manager.console.generator.make-command' => \Mrabbani\ModuleManager\Console\Generators\MakeCommand::class,
+            'module_manager.console.generator.make-module' => \Xcms\Modules\Console\Generators\MakeModule::class,
+            'module_manager.console.generator.make-provider' => \Xcms\Modules\Console\Generators\MakeProvider::class,
+            'module_manager.console.generator.make-controller' => \Xcms\Modules\Console\Generators\MakeController::class,
+            'module_manager.console.generator.make-middleware' => \Xcms\Modules\Console\Generators\MakeMiddleware::class,
+            'module_manager.console.generator.make-request' => \Xcms\Modules\Console\Generators\MakeRequest::class,
+            'module_manager.console.generator.make-model' => \Xcms\Modules\Console\Generators\MakeModel::class,
+            'module_manager.console.generator.make-repository' => \Xcms\Modules\Console\Generators\MakeRepository::class,
+            'module_manager.console.generator.make-facade' => \Xcms\Modules\Console\Generators\MakeFacade::class,
+            'module_manager.console.generator.make-service' => \Xcms\Modules\Console\Generators\MakeService::class,
+            'module_manager.console.generator.make-support' => \Xcms\Modules\Console\Generators\MakeSupport::class,
+            'module_manager.console.generator.make-view' => \Xcms\Modules\Console\Generators\MakeView::class,
+            'module_manager.console.generator.make-migration' => \Xcms\Modules\Console\Generators\MakeMigration::class,
+            'module_manager.console.generator.make-command' => \Xcms\Modules\Console\Generators\MakeCommand::class,
         ];
         foreach ($generators as $slug => $class) {
             $this->app->singleton($slug, function ($app) use ($slug, $class) {
@@ -73,7 +72,7 @@ class ConsoleServiceProvider extends ServiceProvider
     private function registerMigrateCommand()
     {
         $commands = [
-            'module_manager.console.command.module-migrate' => \Mrabbani\ModuleManager\Console\Migrations\ModuleMigrateCommand::class
+            'module_manager.console.command.module-migrate' => \Xcms\Modules\Console\Migrations\ModuleMigrateCommand::class
         ];
         foreach ($commands as $slug => $class) {
             $this->app->singleton($slug, function ($app) use ($slug, $class) {
@@ -88,11 +87,11 @@ class ConsoleServiceProvider extends ServiceProvider
     private function otherCommands()
     {
         $commands = [
-            'module_manager.console.command.module-install' => \Mrabbani\ModuleManager\Console\Commands\InstallModuleCommand::class,
-            'module_manager.console.command.module-uninstall' => \Mrabbani\ModuleManager\Console\Commands\UninstallModuleCommand::class,
-            'module_manager.console.command.disable-module' => \Mrabbani\ModuleManager\Console\Commands\DisableModuleCommand::class,
-            'module_manager.console.command.enable-module' => \Mrabbani\ModuleManager\Console\Commands\EnableModuleCommand::class,
-            'module_manager.console.command.module-route-list' => \Mrabbani\ModuleManager\Console\Commands\RouteListCommand::class,
+            'module_manager.console.command.module-install' => \Xcms\Modules\Console\Commands\InstallModuleCommand::class,
+            'module_manager.console.command.module-uninstall' => \Xcms\Modules\Console\Commands\UninstallModuleCommand::class,
+            'module_manager.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
+            'module_manager.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
+            'module_manager.console.command.module-route-list' => \Xcms\Modules\Console\Commands\RouteListCommand::class,
         ];
         foreach ($commands as $slug => $class) {
             $this->app->singleton($slug, function ($app) use ($slug, $class) {
@@ -110,7 +109,7 @@ class ConsoleServiceProvider extends ServiceProvider
     protected function registerRollbackCommand()
     {
         $this->app->singleton('module_manager.console.command.migration-rollback', function ($app) {
-            return new \Mrabbani\ModuleManager\Console\Migrations\RollbackCommand($app['module.migrator']);
+            return new \Xcms\Modules\Console\Migrations\RollbackCommand($app['module.migrator']);
         });
         $this->commands('module_manager.console.command.migration-rollback');
     }

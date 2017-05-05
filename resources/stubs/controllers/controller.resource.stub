@@ -1,16 +1,13 @@
 <?php namespace DummyNamespace;
 
 use Illuminate\Http\Request;
-use WebEd\Base\Http\Controllers\BaseAdminController;
+use DummyRootNamespaceHttp\Controllers\Controller;
 
-class DummyClass extends BaseAdminController
+class DummyClass extends Controller
 {
     protected $module = '{alias}';
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
+
 
     /**
      * Display a listing of the resource.
