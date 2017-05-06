@@ -11,8 +11,9 @@ abstract class AbstractGenerator extends GeneratorCommand
 
     /**
      * Get root folder of every modules by module type
-     * @param array $type
+     * @param $module
      * @return string
+     * @internal param array $type
      */
     protected function resolveModuleRootFolder($module)
     {

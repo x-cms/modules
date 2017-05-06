@@ -32,7 +32,7 @@ class EnableModuleCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Composer $composer
      */
     public function __construct(Composer $composer)
     {
@@ -55,20 +55,20 @@ class EnableModuleCommand extends Command
 
         if(!$this->container['alias']) {
             foreach ($plugins as $plugin) {
-                \ModulesManagement::enableModule(array_get($plugin, 'alias'));
+                \Module::enableModule(array_get($plugin, 'alias'));
                 $count++;
             }
         } else {
             $plugins = $plugins->where('alias', '=', $this->container['alias']);
             foreach ($plugins as $plugin) {
-                \ModulesManagement::enableModule(array_get($plugin, 'alias'));
+                \Module::enableModule(array_get($plugin, 'alias'));
                 $count++;
             }
         }
 
         echo PHP_EOL;
 
-        \ModulesManagement::refreshComposerAutoload();
+        \Module::refreshComposerAutoload();
 
         $this->info("\n$count module(s) enabled successfully.");
     }

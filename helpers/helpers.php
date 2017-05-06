@@ -1,18 +1,5 @@
 <?php
 
-if (!function_exists('plugins_base_path')) {
-    /**
-     * @param string $path
-     * @return string
-     */
-    function plugins_base_path($path = '')
-    {
-        $pluginDirectory = base_path(config('module_manager.plugin_directory'));
-
-        return $pluginDirectory . ($path ? DIRECTORY_SEPARATOR . $path : $path);
-    }
-}
-
 if (!function_exists('module_base_path')) {
     /**
      * @param string $path

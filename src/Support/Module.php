@@ -6,7 +6,7 @@ use Xcms\Modules\Events\ModuleEnabled;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Composer;
 
-class ModulesManagement
+class Module
 {
     /**
      * @var array
@@ -38,8 +38,8 @@ class ModulesManagement
      */
     public function getModule($alias = null)
     {
-        if(! count($this->modules)) {
-           return get_module_information($alias);
+        if (!count($this->modules)) {
+            return get_module_information($alias);
         }
 
         if (!$alias) {
@@ -98,7 +98,7 @@ class ModulesManagement
 
     /**
      * @param string $alias
-     * @return ModulesManagement
+     * @return Module
      */
     public function disableModule($alias, $withEvent = true)
     {
@@ -111,6 +111,15 @@ class ModulesManagement
 //        $result = $this->modifyModuleAutoload($alias, true);
 
         return $this;
+    }
+
+    public function exists($alias)
+    {
+        $modules = get_all_module_aliases();
+        if(in_array($alias, $modules)){
+            return true;
+        }
+        return false;
     }
 
     /**

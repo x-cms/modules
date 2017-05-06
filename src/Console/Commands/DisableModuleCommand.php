@@ -33,7 +33,7 @@ class DisableModuleCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Composer $composer
      */
     public function __construct(Composer $composer)
     {
@@ -56,20 +56,20 @@ class DisableModuleCommand extends Command
 
         if(!$this->container['alias']) {
             foreach ($plugins as $plugin) {
-                \ModulesManagement::disableModule(array_get($plugin, 'alias'));
+                \Module::disableModule(array_get($plugin, 'alias'));
                 $count++;
             }
         } else {
             $plugins = $plugins->where('alias', '=', $this->container['alias']);
             foreach ($plugins as $plugin) {
-                \ModulesManagement::disableModule(array_get($plugin, 'alias'));
+                \Module::disableModule(array_get($plugin, 'alias'));
                 $count++;
             }
         }
 
         echo PHP_EOL;
 
-        \ModulesManagement::refreshComposerAutoload();
+        \Module::refreshComposerAutoload();
 
         $this->info("\n$count module(s) disabled successfully.");
     }

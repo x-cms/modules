@@ -46,6 +46,6 @@ class LoadModulesServiceProvider extends ServiceProvider
 
     private function booted()
     {
-       \ModulesManagement::setModules($this->modules);
+       \Module::setModules($this->modules);
     }
 }

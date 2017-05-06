@@ -1,7 +1,10 @@
 <?php namespace Xcms\Modules\Providers;
 
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
-use Xcms\Modules\Support\Facades\ModulesManagementFacade;
+use Xcms\Modules\Support\Facades\Module as ModuleFacade;
+use Xcms\Modules\Support\Module;
 
 class ModuleProvider extends ServiceProvider
 {
@@ -35,9 +38,15 @@ class ModuleProvider extends ServiceProvider
         $this->app->register(ConsoleServiceProvider::class);
         $this->app->register(LoadModulesServiceProvider::class);
 
+        //Load module
+        $this->app->singleton('module', function ($app) {
+            $composer = $app->make(Composer::class);
+            return new Module($composer);
+        });
+
         //Register related facades
-        $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('ModulesManagement', ModulesManagementFacade::class);
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Module', ModuleFacade::class);
     }
 
     protected function loadHelpers()

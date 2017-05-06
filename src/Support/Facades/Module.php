@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class ModulesManagementFacade extends Facade
+class Module extends Facade
 {
     /**
      * @return string
      */
     protected static function getFacadeAccessor()
     {
-        return \Xcms\Modules\Support\ModulesManagement::class;
+        return 'module';
     }
 }
