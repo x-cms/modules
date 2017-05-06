@@ -30,16 +30,17 @@ class UninstallModuleServiceProvider extends ServiceProvider
 
     }
 
-    protected function booted()
+    private function booted()
     {
-        acl_permission()
-        ->unsetPermissionByModule($this->moduleAlias);
-
         $this->dropSchema();
     }
 
-    protected function dropSchema()
+    private function dropSchema()
     {
-        //\Schema::dropIfExists('table-name');
+        //If you want to rollback your module migration
+        // uncomment bellow statement
+         
+//        \Artisan::call('module:migrate:rollback', ['alias' => $this->moduleAlias]);
+
     }
 }

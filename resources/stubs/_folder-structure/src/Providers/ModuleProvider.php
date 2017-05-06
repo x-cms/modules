@@ -1,7 +1,5 @@
 <?php namespace DummyNamespace\Providers;
 
-use DummyNamespace\Http\Middleware\BootstrapModuleMiddleware;
-use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class ModuleProvider extends ServiceProvider
@@ -21,6 +19,10 @@ class ModuleProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->publishes([
+            __DIR__ . '/../../resources/assets' => resource_path('assets'),
+            __DIR__ . '/../../resources/public' => public_path(),
+        ], 'assets');
+        $this->publishes([
             __DIR__ . '/../../resources/views' => config('view.paths')[0] . '/vendor/DummyAlias',
         ], 'views');
         $this->publishes([
@@ -29,16 +31,6 @@ class ModuleProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database' => base_path('database'),
         ], 'migrations');
-        $this->publishes([
-            __DIR__ . '/../../resources/assets' => resource_path('assets'),
-        ], 'webed-assets');
-        $this->publishes([
-            __DIR__ . '/../../resources/public' => public_path(),
-        ], 'webed-public-assets');
-
-        app()->booted(function () {
-            $this->app->register(BootstrapModuleServiceProvider::class);
-        });
     }
 
     /**
@@ -49,22 +41,18 @@ class ModuleProvider extends ServiceProvider
     public function register()
     {
         //Load helpers
-        load_module_helpers(__DIR__);
-
-        //Merge configs
-        $configs = split_files_with_basename($this->app['files']->glob(__DIR__ . '/../../config/*.php'));
-
-        foreach ($configs as $key => $row) {
-            $this->mergeConfigFrom($row, $key);
-        }
+        $this->loadHelpers();
 
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(RepositoryServiceProvider::class);
+        $this->app->register(BootstrapModuleServiceProvider::class);
+    }
 
-        /**
-         * @var Router $router
-         */
-        $router = $this->app['router'];
-        $router->pushMiddlewareToGroup('web', BootstrapModuleMiddleware::class);
+    protected function loadHelpers()
+    {
+        $helpers = $this->app['files']->glob(__DIR__ . '/../../helpers/*.php');
+        foreach ($helpers as $helper) {
+            require_once $helper;
+        }
     }
 }
