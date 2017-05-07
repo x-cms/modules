@@ -1,14 +1,14 @@
 <?php
 
-namespace Caffeinated\Modules\Console\Commands;
+namespace Xcms\Modules\Console\Commands;
 
-use Caffeinated\Modules\Modules;
-use Caffeinated\Modules\Traits\MigrationTrait;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Xcms\Modules\Support\Module;
+use Xcms\Modules\Traits\MigrationTrait;
 
 class ModuleMigrateRollbackCommand extends Command
 {
@@ -36,7 +36,7 @@ class ModuleMigrateRollbackCommand extends Command
     protected $migrator;
 
     /**
-     * @var Modules
+     * @var Module
      */
     protected $module;
 
@@ -44,9 +44,9 @@ class ModuleMigrateRollbackCommand extends Command
      * Create a new command instance.
      *
      * @param Migrator $migrator
-     * @param Modules  $module
+     * @param Module  $module
      */
-    public function __construct(Migrator $migrator, Modules $module)
+    public function __construct(Migrator $migrator, Module $module)
     {
         parent::__construct();
 
@@ -84,7 +84,7 @@ class ModuleMigrateRollbackCommand extends Command
      */
     protected function getArguments()
     {
-        return [['slug', InputArgument::OPTIONAL, 'Module slug.']];
+        return [['alias', InputArgument::OPTIONAL, 'Module alias.']];
     }
 
     /**
@@ -109,14 +109,14 @@ class ModuleMigrateRollbackCommand extends Command
      */
     protected function getMigrationPaths()
     {
-        $slug = $this->argument('slug');
+        $alias = $this->argument('alias');
         $paths = [];
 
-        if ($slug) {
-            $paths[] = module_path($slug, 'Database/Migrations');
+        if ($alias) {
+            $paths[] = module_base_path($alias.'/database/migrations');
         } else {
-            foreach ($this->module->all() as $module) {
-                $paths[] = module_path($module['slug'], 'Database/Migrations');
+            foreach (get_all_module_information() as $module) {
+                $paths[] = module_base_path($module['alias'].'/database/migrations');
             }
         }
 

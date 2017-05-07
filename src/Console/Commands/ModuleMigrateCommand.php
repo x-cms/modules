@@ -70,9 +70,9 @@ class ModuleMigrateCommand extends Command
             }
         } else {
             if ($this->option('force')) {
-                $modules = $this->module->getModule();
+                $modules = get_all_module_information();
             } else {
-                $modules = $this->module->isActivated();
+                $modules = get_all_module_information();
             }
 
             foreach ($modules as $module) {

@@ -1,5 +1,6 @@
 <?php namespace Xcms\Modules\Providers;
 
+use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\ServiceProvider;
 use Xcms\Modules\Services\ModuleMigrator;
 
@@ -29,6 +30,7 @@ class ConsoleServiceProvider extends ServiceProvider
         $this->generatorCommands();
         $this->otherCommands();
         $this->registerMigrateCommand();
+        $this->registerMigrateRollbackCommand();
     }
 
     /**
@@ -63,10 +65,10 @@ class ConsoleServiceProvider extends ServiceProvider
     private function otherCommands()
     {
         $commands = [
-//            'module.console.command.module-install' => \Xcms\Modules\Console\Commands\InstallModuleCommand::class,
+            'module.console.command.module-install' => \Xcms\Modules\Console\Commands\InstallModuleCommand::class,
 //            'module.console.command.module-uninstall' => \Xcms\Modules\Console\Commands\UninstallModuleCommand::class,
-            'module.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
-            'module.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
+//            'module.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
+//            'module.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
 //            'module.console.command.module-route-list' => \Xcms\Modules\Console\Commands\RouteListCommand::class,
         ];
         foreach ($commands as $slug => $class) {
@@ -88,6 +90,22 @@ class ConsoleServiceProvider extends ServiceProvider
         });
 
         $this->commands('module.console.command.migrate');
+    }
+
+    /**
+     * Register the module:migrate:rollback command.
+     */
+    protected function registerMigrateRollbackCommand()
+    {
+        $this->app->singleton('module.console.command.migrate.rollback', function ($app) {
+            $repository = $app['migration.repository'];
+
+            $migrator = new Migrator($repository, $app['db'], $app['files']);
+
+            return new \Xcms\Modules\Console\Commands\ModuleMigrateRollbackCommand($migrator, $app['module']);
+        });
+
+        $this->commands('module.console.command.migrate.rollback');
     }
 
 }

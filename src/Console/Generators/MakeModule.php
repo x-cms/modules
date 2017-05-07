@@ -8,9 +8,7 @@ class MakeModule extends Command
     /**
      * @var string
      */
-    protected $signature = 'module:create 
-        {alias : The alias of the module}
-    ';
+    protected $signature = 'make:module {alias : The alias of the module}';
 
     /**
      * @var string
@@ -59,7 +57,7 @@ class MakeModule extends Command
      */
     public function handle()
     {
-        $this->moduleType = 'module'; //$this->ask('Your modular type. Eccepted: module,plugin. Other types will return "module".', 'module');
+        $this->moduleType = 'module';
         if (!in_array($this->moduleType, array_keys($this->acceptedTypes))) {
             $this->moduleType = 'module';
         }
@@ -72,7 +70,7 @@ class MakeModule extends Command
     private function step1()
     {
         $this->moduleFolderName = $this->ask('Module folder name:', $this->container['alias']);
-        $this->container['name'] = $this->ask('Name of module:', config('app.name') . ' '. str_slug($this->container['alias']));
+        $this->container['name'] = $this->ask('Name of module:', config('app.name') . ' ' . str_slug($this->container['alias']));
         $this->container['author'] = $this->ask('Author of module:');
         $this->container['description'] = $this->ask('Description of module:', $this->container['name']);
         $this->container['namespace'] = $this->ask('Namespace of module:', $this->laravel->getNamespace() . $this->acceptedTypes[$this->moduleType] . '\\' . studly_case($this->container['alias']));
