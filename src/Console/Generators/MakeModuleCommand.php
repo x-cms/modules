@@ -3,7 +3,7 @@
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
-class MakeModule extends Command
+class MakeModuleCommand extends Command
 {
     /**
      * @var string

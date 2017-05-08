@@ -1,13 +1,13 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeRequest extends AbstractGenerator
+class MakeFacadeCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'module:make:request
+    protected $signature = 'module:make:facade
     	{alias : The alias of the module}
     	{name : The class name}';
 
@@ -16,7 +16,7 @@ class MakeRequest extends AbstractGenerator
      *
      * @var string
      */
-    protected $description = 'Create new module request';
+    protected $description = 'Create new module facade';
 
 
     /**
@@ -24,7 +24,7 @@ class MakeRequest extends AbstractGenerator
      *
      * @var string
      */
-    protected $type = 'Request';
+    protected $type = 'Facade';
 
     /**
      * Get the stub file for the generator.
@@ -33,11 +33,11 @@ class MakeRequest extends AbstractGenerator
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../../resources/stubs/requests/request.stub';
+        return __DIR__ . '/../../../resources/stubs/facades/facade.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return 'Http\\Requests\\' . $this->argument('name');
+        return 'Facades\\' . $this->argument('name');
     }
 }

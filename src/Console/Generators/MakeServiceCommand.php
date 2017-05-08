@@ -1,13 +1,13 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeFacade extends AbstractGenerator
+class MakeServiceCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'module:make:facade
+    protected $signature = 'module:make:service
     	{alias : The alias of the module}
     	{name : The class name}';
 
@@ -16,15 +16,14 @@ class MakeFacade extends AbstractGenerator
      *
      * @var string
      */
-    protected $description = 'Create new module facade';
-
+    protected $description = 'Create new module service class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Facade';
+    protected $type = 'Service';
 
     /**
      * Get the stub file for the generator.
@@ -33,11 +32,11 @@ class MakeFacade extends AbstractGenerator
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../../resources/stubs/facades/facade.stub';
+        return __DIR__ . '/../../../resources/stubs/services/service.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return 'Facades\\' . $this->argument('name');
+        return 'Services\\' . $this->argument('name');
     }
 }

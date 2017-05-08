@@ -1,6 +1,6 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeRepository extends AbstractGenerator
+class MakeRepositoryCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.

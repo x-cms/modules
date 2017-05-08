@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-class MakeModel extends AbstractGenerator
+class MakeModelCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.

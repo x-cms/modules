@@ -1,13 +1,13 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeProvider extends AbstractGenerator
+class MakeSupportCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'module:make:provider
+    protected $signature = 'module:make:support
     	{alias : The alias of the module}
     	{name : The class name}';
 
@@ -16,14 +16,14 @@ class MakeProvider extends AbstractGenerator
      *
      * @var string
      */
-    protected $description = 'Create new module provider';
+    protected $description = 'Create new module support class';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Provider';
+    protected $type = 'Support';
 
     /**
      * Get the stub file for the generator.
@@ -32,11 +32,11 @@ class MakeProvider extends AbstractGenerator
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../../resources/stubs/providers/provider.stub';
+        return __DIR__ . '/../../../resources/stubs/support/support.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return 'Providers\\' . $this->argument('name');
+        return 'Support\\' . $this->argument('name');
     }
 }

@@ -1,6 +1,6 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeView extends AbstractGenerator
+class MakeViewCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.

@@ -1,13 +1,13 @@
 <?php namespace Xcms\ModuleManager\Console\Generators;
 
-class MakeService extends AbstractGenerator
+class MakeMiddlewareCommand extends AbstractGenerator
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'module:make:service
+    protected $signature = 'module:make:middleware
     	{alias : The alias of the module}
     	{name : The class name}';
 
@@ -16,14 +16,14 @@ class MakeService extends AbstractGenerator
      *
      * @var string
      */
-    protected $description = 'Create new module service class';
+    protected $description = 'Create new module middleware';
 
     /**
      * The type of class being generated.
      *
      * @var string
      */
-    protected $type = 'Service';
+    protected $type = 'Middleware';
 
     /**
      * Get the stub file for the generator.
@@ -32,11 +32,11 @@ class MakeService extends AbstractGenerator
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../../resources/stubs/services/service.stub';
+        return __DIR__ . '/../../../resources/stubs/middleware/middleware.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return 'Services\\' . $this->argument('name');
+        return 'Http\\Middleware\\' . $this->argument('name');
     }
 }

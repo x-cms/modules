@@ -39,18 +39,18 @@ class ConsoleServiceProvider extends ServiceProvider
     private function generatorCommands()
     {
         $generators = [
-            'module.console.generator.make-module' => \Xcms\ModuleManager\Console\Generators\MakeModule::class,
-            'module.console.generator.make-provider' => \Xcms\ModuleManager\Console\Generators\MakeProvider::class,
-            'module.console.generator.make-controller' => \Xcms\ModuleManager\Console\Generators\MakeController::class,
-            'module.console.generator.make-middleware' => \Xcms\ModuleManager\Console\Generators\MakeMiddleware::class,
-            'module.console.generator.make-request' => \Xcms\ModuleManager\Console\Generators\MakeRequest::class,
-            'module.console.generator.make-model' => \Xcms\ModuleManager\Console\Generators\MakeModel::class,
-            'module.console.generator.make-repository' => \Xcms\ModuleManager\Console\Generators\MakeRepository::class,
-            'module.console.generator.make-facade' => \Xcms\ModuleManager\Console\Generators\MakeFacade::class,
-            'module.console.generator.make-service' => \Xcms\ModuleManager\Console\Generators\MakeService::class,
-            'module.console.generator.make-support' => \Xcms\ModuleManager\Console\Generators\MakeSupport::class,
-            'module.console.generator.make-view' => \Xcms\ModuleManager\Console\Generators\MakeView::class,
-            'module.console.generator.make-migration' => \Xcms\ModuleManager\Console\Generators\MakeMigration::class,
+            'module.console.generator.make-module' => \Xcms\ModuleManager\Console\Generators\MakeModuleCommand::class,
+            'module.console.generator.make-provider' => \Xcms\ModuleManager\Console\Generators\MakeProviderCommand::class,
+            'module.console.generator.make-controller' => \Xcms\ModuleManager\Console\Generators\MakeControllerCommand::class,
+            'module.console.generator.make-middleware' => \Xcms\ModuleManager\Console\Generators\MakeMiddlewareCommand::class,
+            'module.console.generator.make-request' => \Xcms\ModuleManager\Console\Generators\MakeRequestCommand::class,
+            'module.console.generator.make-model' => \Xcms\ModuleManager\Console\Generators\MakeModelCommand::class,
+            'module.console.generator.make-repository' => \Xcms\ModuleManager\Console\Generators\MakeRepositoryCommand::class,
+            'module.console.generator.make-facade' => \Xcms\ModuleManager\Console\Generators\MakeFacadeCommand::class,
+            'module.console.generator.make-service' => \Xcms\ModuleManager\Console\Generators\MakeServiceCommand::class,
+            'module.console.generator.make-support' => \Xcms\ModuleManager\Console\Generators\MakeSupportCommand::class,
+            'module.console.generator.make-view' => \Xcms\ModuleManager\Console\Generators\MakeViewCommand::class,
+            'module.console.generator.make-migration' => \Xcms\ModuleManager\Console\Generators\MakeMigrationCommand::class,
             'module.console.generator.make-command' => \Xcms\ModuleManager\Console\Generators\MakeCommand::class,
         ];
         foreach ($generators as $slug => $class) {
@@ -65,8 +65,8 @@ class ConsoleServiceProvider extends ServiceProvider
     private function otherCommands()
     {
         $commands = [
-            'module.console.command.module-install' => \Xcms\ModuleManager\Console\Commands\InstallModuleCommand::class,
-            'module.console.command.module-uninstall' => \Xcms\ModuleManager\Console\Commands\UninstallModuleCommand::class,
+//            'module.console.command.module-install' => \Xcms\ModuleManager\Console\Commands\InstallModuleCommand::class,
+//            'module.console.command.module-uninstall' => \Xcms\ModuleManager\Console\Commands\UninstallModuleCommand::class,
 //            'module.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
 //            'module.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
 //            'module.console.command.module-route-list' => \Xcms\Modules\Console\Commands\RouteListCommand::class,

@@ -2,7 +2,7 @@
 
 use Illuminate\Console\Command;
 
-class MakeMigration extends Command
+class MakeMigrationCommand extends Command
 {
     /**
      * The name and signature of the console command.
