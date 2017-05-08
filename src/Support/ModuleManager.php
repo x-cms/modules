@@ -1,12 +1,12 @@
 <?php namespace Xcms\ModuleManager\Support;
 
 use \Closure;
-use Xcms\Modules\Events\ModuleDisabled;
-use Xcms\Modules\Events\ModuleEnabled;
+use Xcms\ModuleManager\Events\ModuleDisabled;
+use Xcms\ModuleManager\Events\ModuleEnabled;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Composer;
 
-class Module
+class ModuleManager
 {
     /**
      * @var array
@@ -98,7 +98,7 @@ class Module
 
     /**
      * @param string $alias
-     * @return Module
+     * @return ModuleManager
      */
     public function disableModule($alias, $withEvent = true)
     {
@@ -116,7 +116,7 @@ class Module
     public function exists($alias)
     {
         $modules = get_all_module_aliases();
-        if(in_array($alias, $modules)){
+        if (in_array($alias, $modules)) {
             return true;
         }
         return false;
@@ -175,28 +175,22 @@ class Module
             return $this;
         }
         $moduleAutoloadType = array_get($module, 'autoload', 'psr-4');
-        $relativePath = str_replace(base_path() . '/', '', str_replace('module.json', '', array_get($module, 'file', ''))) . 'src';
-
+        $relativePath = str_replace(base_path() . DIRECTORY_SEPARATOR, '', str_replace('module.json', '', array_get($module, 'file', ''))) . 'src';
         $moduleNamespace = array_get($module, 'namespace');
-
         if (!$moduleNamespace) {
             return $this;
         }
-
         if (substr($moduleNamespace, -1) !== '\\') {
             $moduleNamespace .= '\\';
         }
-
         /**
          * Composer information
          */
         $composerContent = json_decode(File::get(base_path('composer.json')), true);
         $autoload = array_get($composerContent, 'autoload', []);
-
         if (!array_get($autoload, $moduleAutoloadType)) {
             $autoload[$moduleAutoloadType] = [];
         }
-
         if ($isDisabled === true) {
             if (isset($autoload[$moduleAutoloadType][$moduleNamespace])) {
                 unset($autoload[$moduleAutoloadType][$moduleNamespace]);
@@ -209,14 +203,11 @@ class Module
             }
         }
         $composerContent['autoload'] = $autoload;
-
         /**
          * Save file
          */
         File::put(base_path('composer.json'), json_encode_pretify($composerContent));
         $this->refreshComposerAutoload();
-
-
         return $this;
     }
 

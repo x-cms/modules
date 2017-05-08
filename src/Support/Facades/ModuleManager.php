@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Module extends Facade
+class ModuleManager extends Facade
 {
     /**
      * @return string

@@ -52,27 +52,11 @@ class InstallModuleCommand extends Command
         /**
          * Migrate tables
          */
-        \Module::enableModule($this->argument('alias'));
-        \Module::modifyModuleAutoload($this->argument('alias'));
+        \ModuleManager::enableModule($this->argument('alias'));
+        \ModuleManager::modifyModuleAutoload($this->argument('alias'));
 
-        $this->line('Migrate database...');
-        \Artisan::call('module:migrate', ['alias' => $this->argument('alias')]);
         $this->line('Install module dependencies...');
-        $this->registerInstallModuleService();
 
         $this->info("\nModule " . $this->argument('alias') . " installed.");
-    }
-
-    protected function registerInstallModuleService()
-    {
-
-        $module = get_module_information($this->argument('alias'));
-        $namespace = str_replace('\\\\', '\\', array_get($module, 'namespace', '') . '\Providers\InstallModuleServiceProvider');
-        if(class_exists($namespace)) {
-            $this->app->register($namespace);
-        }
-        save_module_information($module, [
-            'installed' => true
-        ]);
     }
 }

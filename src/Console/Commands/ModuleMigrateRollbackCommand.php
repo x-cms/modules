@@ -7,7 +7,7 @@ use Illuminate\Console\ConfirmableTrait;
 use Illuminate\Database\Migrations\Migrator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Xcms\ModuleManager\Support\Module;
+use Xcms\ModuleManager\Support\ModuleManager;
 use Xcms\ModuleManager\Traits\MigrationTrait;
 
 class ModuleMigrateRollbackCommand extends Command
@@ -36,7 +36,7 @@ class ModuleMigrateRollbackCommand extends Command
     protected $migrator;
 
     /**
-     * @var Module
+     * @var ModuleManager
      */
     protected $module;
 
@@ -44,9 +44,9 @@ class ModuleMigrateRollbackCommand extends Command
      * Create a new command instance.
      *
      * @param Migrator $migrator
-     * @param Module  $module
+     * @param ModuleManager  $module
      */
-    public function __construct(Migrator $migrator, Module $module)
+    public function __construct(Migrator $migrator, ModuleManager $module)
     {
         parent::__construct();
 

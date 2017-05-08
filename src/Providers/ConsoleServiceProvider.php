@@ -66,7 +66,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
         $commands = [
             'module.console.command.module-install' => \Xcms\ModuleManager\Console\Commands\InstallModuleCommand::class,
-//            'module.console.command.module-uninstall' => \Xcms\Modules\Console\Commands\UninstallModuleCommand::class,
+            'module.console.command.module-uninstall' => \Xcms\ModuleManager\Console\Commands\UninstallModuleCommand::class,
 //            'module.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
 //            'module.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
 //            'module.console.command.module-route-list' => \Xcms\Modules\Console\Commands\RouteListCommand::class,

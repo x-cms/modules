@@ -3,8 +3,8 @@
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
-use Xcms\ModuleManager\Support\Facades\Module as ModuleFacade;
-use Xcms\ModuleManager\Support\Module;
+use Xcms\ModuleManager\Support\Facades\ModuleManager as ModuleFacade;
+use Xcms\ModuleManager\Support\ModuleManager;
 
 class ModuleServiceProvider extends ServiceProvider
 {
@@ -41,12 +41,12 @@ class ModuleServiceProvider extends ServiceProvider
         //Load module
         $this->app->singleton('module', function ($app) {
             $composer = $app->make(Composer::class);
-            return new Module($composer);
+            return new ModuleManager($composer);
         });
 
         //Register related facades
         $loader = AliasLoader::getInstance();
-        $loader->alias('Module', ModuleFacade::class);
+        $loader->alias('ModuleManager', ModuleFacade::class);
     }
 
     protected function loadHelpers()

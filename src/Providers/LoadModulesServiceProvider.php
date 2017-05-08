@@ -19,14 +19,14 @@ class LoadModulesServiceProvider extends ServiceProvider
 
         foreach ($this->modules as $module) {
             $needToBootstrap = false;
-           if (array_get($module, 'installed', null) === true) {
+            if (array_get($module, 'enabled', null) === true) {
                 $needToBootstrap = true;
             }
             if ($needToBootstrap) {
                 /**
                  * Register module
                  */
-                $moduleProvider = $module['namespace'] . '\Providers\ModuleProvider';
+                $moduleProvider = $module['namespace'] . '\Providers\ModuleServiceProvider';
 
                 if (class_exists($moduleProvider)) {
                     $this->app->register($moduleProvider);
@@ -46,6 +46,6 @@ class LoadModulesServiceProvider extends ServiceProvider
 
     private function booted()
     {
-       \Module::setModules($this->modules);
+        \ModuleManager::setModules($this->modules);
     }
 }
