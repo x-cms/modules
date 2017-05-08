@@ -43,7 +43,7 @@ class MakeModule extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param Filesystem $filesystem
      */
     public function __construct(Filesystem $filesystem)
     {
@@ -69,13 +69,13 @@ class MakeModule extends Command
 
     private function step1()
     {
-        $this->moduleFolderName = $this->ask('Module folder name:', $this->container['alias']);
-        $this->container['name'] = $this->ask('Name of module:', config('app.name') . ' ' . str_slug($this->container['alias']));
-        $this->container['author'] = $this->ask('Author of module:');
-        $this->container['description'] = $this->ask('Description of module:', $this->container['name']);
-        $this->container['namespace'] = $this->ask('Namespace of module:', $this->laravel->getNamespace() . $this->acceptedTypes[$this->moduleType] . '\\' . studly_case($this->container['alias']));
-        $this->container['version'] = $this->ask('Module version.', '1.0');
-        $this->container['autoload'] = $this->ask('Autoloading type.', 'psr-4');
+        $this->moduleFolderName = $this->ask('Please enter the folder for the module:', $this->container['alias']);
+        $this->container['name'] = $this->ask('Please enter the name of the module:', studly_case($this->container['alias']));
+        $this->container['author'] = $this->ask('Please enter the author for the module:');
+        $this->container['description'] = $this->ask('Please enter the description of the module:', 'This is the description for the '.$this->container['name'].' module.');
+        $this->container['namespace'] = $this->ask('Please enter the namespace of the module:', $this->laravel->getNamespace() . $this->acceptedTypes[$this->moduleType] . '\\' . studly_case($this->container['alias']));
+        $this->container['version'] = $this->ask('Please enter the module version:', '1.0');
+        $this->container['autoload'] = $this->ask('Please enter the autoload of the module:', 'psr-4');
 
         $this->step2();
     }
@@ -83,6 +83,9 @@ class MakeModule extends Command
     private function step2()
     {
         $this->generatingModule();
+
+        \ModuleManager::enableModule($this->argument('alias'));
+        \ModuleManager::modifyModuleAutoload($this->argument('alias'));
 
         $this->info("\nYour module generated successfully.");
     }

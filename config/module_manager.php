@@ -1,5 +1,5 @@
 <?php
 
 return [
-  'module_directory' => 'modules',
+  'module_directory' => 'app/modules',
 ];
