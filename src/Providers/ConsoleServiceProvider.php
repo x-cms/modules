@@ -1,8 +1,8 @@
-<?php namespace Xcms\Modules\Providers;
+<?php namespace Xcms\ModuleManager\Providers;
 
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\ServiceProvider;
-use Xcms\Modules\Services\ModuleMigrator;
+use Xcms\ModuleManager\Services\ModuleMigrator;
 
 /**
  * Class ConsoleServiceProvider
@@ -39,19 +39,19 @@ class ConsoleServiceProvider extends ServiceProvider
     private function generatorCommands()
     {
         $generators = [
-            'module.console.generator.make-module' => \Xcms\Modules\Console\Generators\MakeModule::class,
-            'module.console.generator.make-provider' => \Xcms\Modules\Console\Generators\MakeProvider::class,
-            'module.console.generator.make-controller' => \Xcms\Modules\Console\Generators\MakeController::class,
-            'module.console.generator.make-middleware' => \Xcms\Modules\Console\Generators\MakeMiddleware::class,
-            'module.console.generator.make-request' => \Xcms\Modules\Console\Generators\MakeRequest::class,
-            'module.console.generator.make-model' => \Xcms\Modules\Console\Generators\MakeModel::class,
-            'module.console.generator.make-repository' => \Xcms\Modules\Console\Generators\MakeRepository::class,
-            'module.console.generator.make-facade' => \Xcms\Modules\Console\Generators\MakeFacade::class,
-            'module.console.generator.make-service' => \Xcms\Modules\Console\Generators\MakeService::class,
-            'module.console.generator.make-support' => \Xcms\Modules\Console\Generators\MakeSupport::class,
-            'module.console.generator.make-view' => \Xcms\Modules\Console\Generators\MakeView::class,
-            'module.console.generator.make-migration' => \Xcms\Modules\Console\Generators\MakeMigration::class,
-            'module.console.generator.make-command' => \Xcms\Modules\Console\Generators\MakeCommand::class,
+            'module.console.generator.make-module' => \Xcms\ModuleManager\Console\Generators\MakeModule::class,
+            'module.console.generator.make-provider' => \Xcms\ModuleManager\Console\Generators\MakeProvider::class,
+            'module.console.generator.make-controller' => \Xcms\ModuleManager\Console\Generators\MakeController::class,
+            'module.console.generator.make-middleware' => \Xcms\ModuleManager\Console\Generators\MakeMiddleware::class,
+            'module.console.generator.make-request' => \Xcms\ModuleManager\Console\Generators\MakeRequest::class,
+            'module.console.generator.make-model' => \Xcms\ModuleManager\Console\Generators\MakeModel::class,
+            'module.console.generator.make-repository' => \Xcms\ModuleManager\Console\Generators\MakeRepository::class,
+            'module.console.generator.make-facade' => \Xcms\ModuleManager\Console\Generators\MakeFacade::class,
+            'module.console.generator.make-service' => \Xcms\ModuleManager\Console\Generators\MakeService::class,
+            'module.console.generator.make-support' => \Xcms\ModuleManager\Console\Generators\MakeSupport::class,
+            'module.console.generator.make-view' => \Xcms\ModuleManager\Console\Generators\MakeView::class,
+            'module.console.generator.make-migration' => \Xcms\ModuleManager\Console\Generators\MakeMigration::class,
+            'module.console.generator.make-command' => \Xcms\ModuleManager\Console\Generators\MakeCommand::class,
         ];
         foreach ($generators as $slug => $class) {
             $this->app->singleton($slug, function ($app) use ($slug, $class) {
@@ -65,7 +65,7 @@ class ConsoleServiceProvider extends ServiceProvider
     private function otherCommands()
     {
         $commands = [
-            'module.console.command.module-install' => \Xcms\Modules\Console\Commands\InstallModuleCommand::class,
+            'module.console.command.module-install' => \Xcms\ModuleManager\Console\Commands\InstallModuleCommand::class,
 //            'module.console.command.module-uninstall' => \Xcms\Modules\Console\Commands\UninstallModuleCommand::class,
 //            'module.console.command.disable-module' => \Xcms\Modules\Console\Commands\DisableModuleCommand::class,
 //            'module.console.command.enable-module' => \Xcms\Modules\Console\Commands\EnableModuleCommand::class,
@@ -86,7 +86,7 @@ class ConsoleServiceProvider extends ServiceProvider
     private function registerMigrateCommand()
     {
         $this->app->singleton('module.console.command.migrate', function ($app) {
-            return new \Xcms\Modules\Console\Commands\ModuleMigrateCommand($app['migrator'], $app['module']);
+            return new \Xcms\ModuleManager\Console\Commands\ModuleMigrateCommand($app['migrator'], $app['module']);
         });
 
         $this->commands('module.console.command.migrate');
@@ -102,7 +102,7 @@ class ConsoleServiceProvider extends ServiceProvider
 
             $migrator = new Migrator($repository, $app['db'], $app['files']);
 
-            return new \Xcms\Modules\Console\Commands\ModuleMigrateRollbackCommand($migrator, $app['module']);
+            return new \Xcms\ModuleManager\Console\Commands\ModuleMigrateRollbackCommand($migrator, $app['module']);
         });
 
         $this->commands('module.console.command.migrate.rollback');

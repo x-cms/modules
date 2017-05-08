@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcms\Modules\Services;
+namespace Xcms\ModuleManager\Services;
 
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Arr;

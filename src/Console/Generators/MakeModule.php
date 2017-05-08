@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Console\Generators;
+<?php namespace Xcms\ModuleManager\Console\Generators;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;

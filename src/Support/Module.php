@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Support;
+<?php namespace Xcms\ModuleManager\Support;
 
 use \Closure;
 use Xcms\Modules\Events\ModuleDisabled;

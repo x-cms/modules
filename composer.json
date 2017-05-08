@@ -1,6 +1,6 @@
 {
     "name": "xcms/modules",
-    "description": "Laravel Module Management",
+    "description": "Laravel Module Manager",
     "type": "laravel",
     "authors": [
         {
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Xcms\\Modules\\": "src/"
+            "Xcms\\ModuleManager\\": "src/"
         }
     },
     "license": "MIT"

@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Console\Commands;
+<?php namespace Xcms\ModuleManager\Console\Commands;
 
 use Illuminate\Console\Command;
 

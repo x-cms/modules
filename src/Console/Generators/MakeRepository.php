@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Console\Generators;
+<?php namespace Xcms\ModuleManager\Console\Generators;
 
 class MakeRepository extends AbstractGenerator
 {

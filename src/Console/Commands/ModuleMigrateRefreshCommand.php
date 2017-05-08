@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcms\Modules\Console\Commands;
+namespace Xcms\ModuleManager\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;

@@ -1,12 +1,12 @@
-<?php namespace Xcms\Modules\Providers;
+<?php namespace Xcms\ModuleManager\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Composer;
 use Illuminate\Support\ServiceProvider;
-use Xcms\Modules\Support\Facades\Module as ModuleFacade;
-use Xcms\Modules\Support\Module;
+use Xcms\ModuleManager\Support\Facades\Module as ModuleFacade;
+use Xcms\ModuleManager\Support\Module;
 
-class ModuleProvider extends ServiceProvider
+class ModuleServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

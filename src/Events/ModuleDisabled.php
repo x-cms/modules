@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Events;
+<?php namespace Xcms\ModuleManager\Events;
 
 class ModuleDisabled
 {

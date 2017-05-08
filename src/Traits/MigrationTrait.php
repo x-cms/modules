@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcms\Modules\Traits;
+namespace Xcms\ModuleManager\Traits;
 
 trait MigrationTrait
 {

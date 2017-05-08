@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Support\Facades;
+<?php namespace Xcms\ModuleManager\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

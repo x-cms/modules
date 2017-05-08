@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcms\Modules\Console\Commands;
+namespace Xcms\ModuleManager\Console\Commands;
 
 use Xcms\Modules\Support\Module;
 use Illuminate\Console\Command;

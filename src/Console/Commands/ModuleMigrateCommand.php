@@ -1,6 +1,6 @@
 <?php
 
-namespace Xcms\Modules\Console\Commands;
+namespace Xcms\ModuleManager\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
@@ -8,7 +8,7 @@ use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Support\Arr;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Xcms\Modules\Support\Module;
+use Xcms\ModuleManager\Support\Module;
 
 class ModuleMigrateCommand extends Command
 {

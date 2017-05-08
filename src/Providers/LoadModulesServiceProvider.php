@@ -1,4 +1,4 @@
-<?php namespace Xcms\Modules\Providers;
+<?php namespace Xcms\ModuleManager\Providers;
 
 use \Illuminate\Support\ServiceProvider;
 use File;
