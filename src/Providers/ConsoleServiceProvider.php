@@ -38,28 +38,22 @@ class ConsoleServiceProvider extends ServiceProvider
      */
     private function generatorCommands()
     {
-        $generators = [
-            'module.console.generator.make-module' => \Xcms\ModuleManager\Console\Generators\MakeModuleCommand::class,
-            'module.console.generator.make-provider' => \Xcms\ModuleManager\Console\Generators\MakeProviderCommand::class,
-            'module.console.generator.make-controller' => \Xcms\ModuleManager\Console\Generators\MakeControllerCommand::class,
-            'module.console.generator.make-middleware' => \Xcms\ModuleManager\Console\Generators\MakeMiddlewareCommand::class,
-            'module.console.generator.make-request' => \Xcms\ModuleManager\Console\Generators\MakeRequestCommand::class,
-            'module.console.generator.make-model' => \Xcms\ModuleManager\Console\Generators\MakeModelCommand::class,
-            'module.console.generator.make-repository' => \Xcms\ModuleManager\Console\Generators\MakeRepositoryCommand::class,
-            'module.console.generator.make-facade' => \Xcms\ModuleManager\Console\Generators\MakeFacadeCommand::class,
-            'module.console.generator.make-service' => \Xcms\ModuleManager\Console\Generators\MakeServiceCommand::class,
-            'module.console.generator.make-support' => \Xcms\ModuleManager\Console\Generators\MakeSupportCommand::class,
-            'module.console.generator.make-view' => \Xcms\ModuleManager\Console\Generators\MakeViewCommand::class,
-            'module.console.generator.make-migration' => \Xcms\ModuleManager\Console\Generators\MakeMigrationCommand::class,
-            'module.console.generator.make-command' => \Xcms\ModuleManager\Console\Generators\MakeCommand::class,
-        ];
-        foreach ($generators as $slug => $class) {
-            $this->app->singleton($slug, function ($app) use ($slug, $class) {
-                return $app[$class];
-            });
-
-            $this->commands($slug);
-        }
+        $this->commands([
+            \Xcms\ModuleManager\Console\Generators\MakeModuleCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeProviderCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeControllerCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeMiddlewareCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeRequestCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeModelCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeRepositoryCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeFacadeCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeServiceCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeSupportCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeViewCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeMigrationCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeDataTableCommand::class,
+        ]);
     }
 
     private function otherCommands()
