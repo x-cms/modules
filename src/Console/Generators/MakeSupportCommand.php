@@ -32,7 +32,7 @@ class MakeSupportCommand extends AbstractGenerator
      */
     protected function getStub()
     {
-        return __DIR__ . '/../../../resources/stubs/support/support.stub';
+        return __DIR__ . '/../../../resources/stubs/supports/support.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
