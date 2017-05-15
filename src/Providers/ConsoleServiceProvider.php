@@ -49,6 +49,7 @@ class ConsoleServiceProvider extends ServiceProvider
             \Xcms\ModuleManager\Console\Generators\MakeFacadeCommand::class,
             \Xcms\ModuleManager\Console\Generators\MakeServiceCommand::class,
             \Xcms\ModuleManager\Console\Generators\MakeSupportCommand::class,
+            \Xcms\ModuleManager\Console\Generators\MakeTraitCommand::class,
             \Xcms\ModuleManager\Console\Generators\MakeViewCommand::class,
             \Xcms\ModuleManager\Console\Generators\MakeMigrationCommand::class,
             \Xcms\ModuleManager\Console\Generators\MakeCommand::class,
