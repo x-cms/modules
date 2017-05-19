@@ -67,7 +67,6 @@ if (!function_exists('get_module_information')) {
      */
     function get_module_information($alias)
     {
-        dd(get_all_module_information());
         return collect(get_all_module_information())
             ->where('alias', '=', $alias)
             ->first();
