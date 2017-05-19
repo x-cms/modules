@@ -1,0 +1,22 @@
+{
+    "name": "xcms/modules",
+    "description": "Laravel Module Manager",
+    "type": "laravel",
+    "authors": [
+        {
+            "name": "jinhongjie",
+            "email": "jinhongjie007@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/console": "5.4.*",
+        "illuminate/database": "5.4.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xcms\\ModuleManager\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
